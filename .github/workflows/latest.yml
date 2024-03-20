@@ -53,7 +53,8 @@ jobs:
         echo "Hello World! äöüßÄÖÜ" > test.txt
         recode -f utf8..latin1 test.txt
     - name: create PS file
-      run:
+      run: |
+        locale
         a2ps -b --center-title="My title" -1 -o test.ps test.txt
     - name: create PDF file
       run:
