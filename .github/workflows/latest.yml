@@ -24,6 +24,12 @@ jobs:
       run: |
         cd a2ps
         ./configure
+    - name: yacc
+      run: |
+        cd a2ps/liba2ps
+        yacc -d -b parseppd parseppd.y
+        mv parseppd.tab.c parseppd.c
+        mv parseppd.tab.h parseppd.h
     - name: build
       run: |
         cd a2ps
