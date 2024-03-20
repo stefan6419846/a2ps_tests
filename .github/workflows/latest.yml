@@ -37,7 +37,7 @@ jobs:
     - name: install
       run: |
         cd a2ps
-        make install
+        sudo make install
     - name: verify installation
       run: |
         a2ps --help
