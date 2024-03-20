@@ -4,6 +4,10 @@ on:
 - push
 - workflow_dispatch
 
+env:
+  LC_ALL: 'de_DE'
+  LANG: 'de_DE.UTF-8'
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -48,8 +52,6 @@ jobs:
     - name: create PS file
       run:
         a2ps -b --center-title="My title" -1 -o test.ps test.txt
-      env:
-        LANG: de_DE.UTF-8
     - name: create PDF file
       run:
         gs -dSAFER -sPAPERSIZE=a4 -dAutoRotatePages=/None -o test.pdf -sDEVICE=pdfwrite -f test.ps
