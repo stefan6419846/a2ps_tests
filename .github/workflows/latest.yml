@@ -15,7 +15,7 @@ jobs:
         git clone https://git.savannah.gnu.org/git/a2ps.git
     - name: install dependencies
       run:
-        sudo apt-get install gperf help2man autopoint libgc-dev
+        sudo apt-get install gperf help2man autopoint libgc-dev libpaper-dev
     - name: bootstrap
       run: |
         cd a2ps
