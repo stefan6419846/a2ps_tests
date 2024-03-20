@@ -4,16 +4,18 @@ on:
 - push
 - workflow_dispatch
 
-env:
-  LC_ALL: 'de_DE'
-  LANG: 'de_DE.UTF-8'
-
 jobs:
   build:
     runs-on: ubuntu-latest
     name: Build
     steps:
     - uses: actions/checkout@v4
+    - name: configure locale
+      run: |
+        locale
+        sudo locale-gen de_DE.UTF-8
+        update-locale LANG=de_DE.UTF-8
+        locale
     - name: Git checkout
       run:
         git clone https://git.savannah.gnu.org/git/a2ps.git
