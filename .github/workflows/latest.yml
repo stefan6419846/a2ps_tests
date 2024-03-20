@@ -15,7 +15,7 @@ jobs:
         git clone https://git.savannah.gnu.org/git/a2ps.git
     - name: install dependencies
       run:
-        sudo apt-get install gperf help2man autopoint libgc-dev libpaper-dev
+        sudo apt-get install gperf help2man autopoint libgc-dev libpaper-dev ghostscript
     - name: bootstrap
       run: |
         cd a2ps
@@ -41,3 +41,21 @@ jobs:
     - name: verify installation
       run: |
         a2ps --help
+    - name: create test file
+      run: |
+        echo "Hello World! äöüßÄÖÜ" > test.txt
+        recode -f utf8..latin1 test.txt
+    - name: create PS file
+      run:
+        a2ps -b --center-title="My title" -1 -o test.ps test.txt
+      env:
+        LANG: de_DE.UTF-8
+    - name: create PDF file
+      run:
+        gs -dSAFER -sPAPERSIZE=a4 -dAutoRotatePages=/None -o test.pdf -sDEVICE=pdfwrite -f test.ps
+    - name: upload generated files
+      uses: actions/upload-artifact@v4
+      with:
+        name: files
+        path: |
+          test.*
