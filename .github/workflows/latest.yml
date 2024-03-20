@@ -15,6 +15,7 @@ jobs:
         locale
         sudo locale-gen de_DE.UTF-8
         sudo sh -c "echo 'LANG=de_DE.UTF-8' > /etc/default/locale"
+        . /etc/default/locale
         locale
     - name: Git checkout
       run:
