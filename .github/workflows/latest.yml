@@ -45,6 +45,7 @@ jobs:
       run: |
         echo "Hello World! äöüßÄÖÜ" > test.txt
         recode -f utf8..latin1 test.txt
+        touch -t 202303131337 test.txt
     - name: create PS file
       run: |
         locale
